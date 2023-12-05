@@ -1,0 +1,46 @@
+#reader__scan_region img {
+    display: none;
+}
+
+#html5-qrcode-button-camera-start {
+    margin: 10px;
+    font-size: 25px;
+    font-weight: 600;
+    background-color: #22c55e;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+#html5-qrcode-button-camera-start:hover {
+    margin: 10px;
+    font-size: 25px;
+    font-weight: 600;
+    background-color: inherit;
+    border: 2px solid #22c55e;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+#html5-qrcode-anchor-scan-type-change {
+    text-decoration: none;
+    margin: 20px;
+}
+
+#html5-qrcode-button-camera-permission {
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #22c55e;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+#html5-qrcode-button-camera-permission:hover {
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: inherit;
+    border: 2px solid #22c55e;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
