@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { Html5QrcodeScanner, Html5QrcodeSupportedFormats } from "html5-qrcode";
-import { DESKTOP_TAILWIND } from "../constants/constants";
 import "../styles/scanner.css";
 import Backend from "../components/api/Backend";
 import { useLocation, useNavigate } from "react-router-dom";
-import Footer from "../components/Footer/Footer";
 import AppContainer from "../components/AppContainer/AppContainer";
 
 const Scanner = () => {

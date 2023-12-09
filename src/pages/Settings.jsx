@@ -8,7 +8,7 @@ import AppContainer from "../components/AppContainer/AppContainer";
 import { ReactComponent as SpotifinderTreble } from "../images/spotifinder_treble.svg";
 import {load} from '@cashfreepayments/cashfree-js';
 import Backend from "../components/api/Backend";
-
+import Loader from "../components/Loader/Loader";
 
 function CollapsibleSection({ title, children }) {
     const [isCollapsed, setIsCollapsed] = useState(true);
@@ -55,7 +55,7 @@ const initiatePayment = async(type, uid) => {
         'type': type,
         'uid': uid
     }
-    const response = await Backend.post("/createCashfreeOrder/", data)
+    const response = await Backend.post("/create_cashfree_order/", data)
 
     if(response.data["status"]!==1200){
         alert("Error in creating order data");
@@ -66,7 +66,7 @@ const initiatePayment = async(type, uid) => {
 
     let checkoutOptions = {
         paymentSessionId: order_data["payment_session_id"],
-        // returnUrl: `https://f7bd-49-205-197-249.ngrok-free.app/paymentRedirect?type=${type}&uid=${userData['profileData']['uid']}`,
+        returnUrl: `http://localhost:3000/settings?order_id={order_id}`,
     }
 
     cashfree.checkout(checkoutOptions).then(function(result){
@@ -99,22 +99,36 @@ const Settings = () => {
 
     // let userData = JSON.parse(localStorage.getItem("userData"))?.profileData;
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData"))?.profileData)
+    const [loading, setLoading] = useState(true)
+
     
-    const getUserProfile = async() => {
-        const response = await Backend.post(`/getUpdatedUserData/`, {"uid": userData['uid']});
-        if(response.status===200){
-            localStorage.setItem("userData", JSON.stringify(response.data));
-        }
-    }
 
     useEffect(()=>{
-        console.log("Getting user data from Mongo");
-        getUserProfile();
-        setUserData(JSON.parse(localStorage.getItem("userData"))?.profileData)
+        const getUserProfile = async(order_id) => {
+            console.log("Getting user data from Mongo");
+            let data = {
+                "uid": userData['uid'],
+                "order_id": order_id,
+            }
+            console.log(data);
+            const response = await Backend.post(`/get_updated_user_data/`, data);
+            console.log(response);
+            if(response.status===200){
+                localStorage.setItem("userData", JSON.stringify(response.data));
+            }
+            setUserData(JSON.parse(localStorage.getItem("userData"))?.profileData)
+            setLoading(false)
+        }
+        
+        const searchParams = new URLSearchParams(document.location.search)
+        let order_id = searchParams.get('order_id')
+
+        getUserProfile(order_id);
     },[])
 
 
-
+    if(loading===true)
+    return (<Loader />)
     return (
         <AppContainer className={`items-start px-6 py-2`}>
             <div className="profile py-10 w-full">
@@ -129,7 +143,7 @@ const Settings = () => {
                     </h1>
                 </div>
                 <div className="trebles w-full p-2 flex flex-col justify-center ">
-                    <div className="flex items-center justify-around w-full">
+                    <div className="flex items-center justify-center gap-6 w-full">
                         <p className="info text-sm font-thin tracking-tight text-gray-300">
                             Tokens left
                         </p>
@@ -304,7 +318,7 @@ const Settings = () => {
                                 <EnvelopeIcon className="w-6" />
                                 <p>reply.spotifinder@gmail.com</p>
                             </div>
-                            <h1 className="font-bold">Open to business</h1>
+                            <h1 className="font-bold mb-10">Open to business</h1>
                         </div>
                     }
                 </CollapsibleSection>
