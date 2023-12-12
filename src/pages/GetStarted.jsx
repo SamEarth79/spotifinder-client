@@ -12,17 +12,20 @@ const GetStarted = () => {
     const navigate = useNavigate();
     localStorage.clear();
 
-    const logoText = "Spotifinder"
-    const loadingText = "Let's get you in.."
+    const logoText = "Spotifinder";
+    const loadingText = "Let's get you in..";
     const [mainText, setMainText] = useState(logoText);
     
+    
+
+
 
     const checkAccessToken = async () => {
         const fragmentString = window.location.hash.substring(1); // Get the fragment identifier without the '#'
         const params = new URLSearchParams(fragmentString); // Parse the parameters
         const accessToken = params.get("access_token"); // Retrieve the access_token parameter
         if (accessToken != null) {
-            setMainText(loadingText)
+            setMainText(loadingText);
             const data = {
                 accessToken: accessToken,
             };
@@ -65,6 +68,8 @@ const GetStarted = () => {
         );
     }, []);
 
+    
+
     return (
         <AppContainer footer={false}>
             <div className="h-screen flex flex-col items-center justify-center gap-10">
@@ -78,20 +83,18 @@ const GetStarted = () => {
                         </h1>
                     </header>
                 </div>
-                {(mainText===logoText) ? 
-                <div className="get-started bg-inherit w-fit p-[7px] rounded-lg border border-white">
-                    <div
-                        className="font-semibold font-Cabin tracking-tight bg-green-500 w-fit px-6 py-2 rounded-lg cursor-pointer"
-                        onClick={performImplicitGrant}
-                    >
-                        Get started
-                        
+                {mainText === logoText ? (
+                    <div className="get-started bg-inherit w-fit p-[7px] rounded-lg border border-white">
+                        <div
+                            className="font-semibold font-Cabin tracking-tight bg-green-500 w-fit px-6 py-2 rounded-lg cursor-pointer"
+                            onClick={performImplicitGrant}
+                        >
+                            Get started
+                        </div>
                     </div>
-                </div>
-                : <BounceLoader
-                    color="#22c55e"
-                    true
-                />}
+                ) : (
+                    <BounceLoader color="#22c55e" true />
+                )}
             </div>
         </AppContainer>
     );
