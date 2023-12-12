@@ -15,10 +15,6 @@ const GetStarted = () => {
     const logoText = "Spotifinder";
     const loadingText = "Let's get you in..";
     const [mainText, setMainText] = useState(logoText);
-    
-    
-
-
 
     const checkAccessToken = async () => {
         const fragmentString = window.location.hash.substring(1); // Get the fragment identifier without the '#'
@@ -67,8 +63,6 @@ const GetStarted = () => {
             }
         );
     }, []);
-
-    
 
     return (
         <AppContainer footer={false}>
