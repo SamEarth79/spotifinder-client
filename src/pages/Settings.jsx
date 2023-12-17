@@ -66,7 +66,7 @@ const initiatePayment = async(type, uid) => {
 
     let checkoutOptions = {
         paymentSessionId: order_data["payment_session_id"],
-        returnUrl: `http://localhost:3000/settings?order_id={order_id}`,
+        returnUrl: `http://${window.location.host}/settings?order_id={order_id}`,
     }
 
     cashfree.checkout(checkoutOptions).then(function(result){
