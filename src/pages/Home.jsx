@@ -128,7 +128,7 @@ const Home = () => {
         <AppContainer className={`px-8 pt-8`}>
             <div className="userButton__container flex justify-between w-full items-center pb-8">
                 <div className="logo__container hero-text text-green-500 font-Cabin font-semibold tracking-tighter text-4xl w-fit">
-                    Spotifinder
+                    matchingbeats
                 </div>
                 <div className="userButton relative flex flex-col items-center gap-1" onClick={()=>{navigate("/settings")}}>
                     <div

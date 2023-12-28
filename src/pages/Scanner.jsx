@@ -50,7 +50,7 @@ const Scanner = () => {
                     id="reader"
                 ></div>
                 <div className="logo__container absolute bottom-20 hero-text text-green-500 font-Cabin font-semibold tracking-tighter text-4xl w-fit">
-                    <p>Spotifinder</p>
+                    <p>matchingbeats</p>
                 </div>
             </div>
         </AppContainer>

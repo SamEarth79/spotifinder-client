@@ -167,7 +167,7 @@ const Settings = () => {
                     {
                         <div className="max-h-screen overflow-scroll flex flex-col gap-4">
                             <p>
-                                Welcome to Spotifinder. Your privacy is
+                                Welcome to matchingbeats. Your privacy is
                                 important to us, and we are committed to
                                 protecting your personal information. This
                                 Privacy Policy explains how we collect, use,
@@ -184,7 +184,7 @@ const Settings = () => {
                                         <strong>
                                             User-Provided Information:
                                         </strong>{" "}
-                                        To use Spotifinder, you may need to
+                                        To use matchingbeats, you may need to
                                         authorize us to access your Spotify
                                         data, including but not limited to
                                         playlists, music preferences, and user
@@ -280,7 +280,7 @@ const Settings = () => {
                                     <li>
                                         <strong>Access and Correction:</strong>{" "}
                                         You can access and correct your data
-                                        through your Spotifinder account
+                                        through your matchingbeats account
                                         settings.
                                     </li>
                                     <li>
@@ -293,10 +293,10 @@ const Settings = () => {
                         </div>
                     }
                 </CollapsibleSection>
-                <CollapsibleSection title="About Spotifinder">
+                <CollapsibleSection title="About matchingbeats">
                     {
                         <p>
-                            Spotifinder is a fun side project that I have
+                            matchingbeats is a fun side project that I have
                             developed for my passion of building such amusing
                             websites.
                             <br />
@@ -307,7 +307,7 @@ const Settings = () => {
                             <br />
                             The website still has a lot of potential to grow and
                             to be more amusing. I'm happy for all your feedbacks
-                            that you can send on reply.spotifinder@gmail.com
+                            that you can send on reply.matchingbeats@gmail.com
                         </p>
                     }
                 </CollapsibleSection>
@@ -316,7 +316,7 @@ const Settings = () => {
                         <div className="flex flex-col gap-4">
                             <div className="">
                                 <EnvelopeIcon className="w-6" />
-                                <p>reply.spotifinder@gmail.com</p>
+                                <p>reply.matchingbeats@gmail.com</p>
                             </div>
                             <h1 className="font-bold mb-10">Open to business</h1>
                         </div>

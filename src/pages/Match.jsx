@@ -141,7 +141,7 @@ const Match = () => {
             >
                 <div className="userButton__container w-full flex justify-between items-center pb-8 mt-4">
                     <div className="logo__container hero-text text-left text-green-500 font-Cabin font-semibold tracking-tighter text-4xl w-fit">
-                        Spotifinder
+                        matchingbeats
                     </div>
                     <div
                         className={`userButton bg-green-500 w-16 aspect-square rounded-full border border-white`}
@@ -263,7 +263,7 @@ const Match = () => {
                     </div>
                 </div>
                 <div className="ad__section">
-                    <h1 className="text-white">Liked Spotifinder? Please share it to your friends</h1>
+                    <h1 className="text-white">Liked matchingbeats? Please share it to your friends</h1>
                 </div>
             </div>
         </div>
