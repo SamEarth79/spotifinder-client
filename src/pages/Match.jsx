@@ -12,7 +12,7 @@ const Match = () => {
     const profile2 = location.state.profile2;
     const commonArtists = location.state.common_artists.slice(0, 5);
     const features = location.state.features;
-    const [loadingMatch, setLoadingMatch] = useState(-20);
+    const [loadingMatch, setLoadingMatch] = useState(0);
     let matchStatus = "Ehh?";
     if (location.state.match > 25) matchStatus = "Buddies";
     if (location.state.match > 50) matchStatus = "Besties";
@@ -23,27 +23,27 @@ const Match = () => {
 
     const gsapAnimations = () => {
         let tl = gsap.timeline({});
-        tl.fromTo(
-            ".circle__container",
-            {
-                autoAlpha: 0,
-            },
-            {
-                autoAlpha: 1,
-                duration: 0.3,
-            }
-        );
-        tl.fromTo(
-            ".circle__container",
-            {
-                gap: 0,
-            },
-            {
-                gap: "40%",
-                duration: 0.6,
-                ease: "expo",
-            }
-        );
+        // tl.fromTo(
+        //     ".circle__container",
+        //     {
+        //         autoAlpha: 0,
+        //     },
+        //     {
+        //         autoAlpha: 1,
+        //         duration: 0.3,
+        //     }
+        // );
+        // tl.fromTo(
+        //     ".circle__container",
+        //     {
+        //         gap: 0,
+        //     },
+        //     {
+        //         gap: "40%",
+        //         duration: 0.6,
+        //         ease: "expo",
+        //     }
+        // );
         tl.fromTo(
             ".match_c",
             {
@@ -144,36 +144,39 @@ const Match = () => {
                         matchingbeats
                     </div>
                     <div
-                        className={`userButton bg-green-500 w-16 aspect-square rounded-full border border-white`}
+                        className={`userButton bg-green-500 w-16 aspect-square`}
                     >
                         <img
                             src={`${profile1.image}`}
                             alt="user logo"
-                            className="overflow-hidden rounded-full object-contain"
+                            className="overflow-hidden object-contain cursor-pointer"
+                            onClick={() => {window.open(`${profile1.user_url}`, '_blank')}}
                         />
                     </div>
                 </div>
-                <div className="circle__container flex w-full justify-center relative">
+                <div className="circle__container flex w-full justify-around items-center relative">
                     <div
-                        className={`w-[100px] h-[200px] rounded-s-full relative flex overflow-hidden`}
+                        className={`w-[100px] aspect-square relative flex overflow-hidden`}
                     >
                         <img
                             src={profile1.image}
-                            className="w-full object-cover"
-                            alt=""
+                            className="w-full object-cover cursor-pointer"
+                            alt="profil pic of user 1"
+                            onClick={() => {window.open(`${profile1.user_url}`, '_blank')}}
                         />
                     </div>
-                    <div
-                        className={`w-[100px] h-[200px] rounded-e-full relative flex overflow-hidden`}
-                    >
-                        <img
-                            src={profile1.image}
-                            className="w-full object-cover"
-                            alt=""
-                        />
-                    </div>
-                    <div className="match__container absolute flex flex-col justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-6xl font-semibold">
+                    <div className="match__container  text-white text-6xl font-semibold">
                         <p className="match_c">{loadingMatch}</p>
+                    </div>
+                    <div
+                        className={`w-[100px] aspect-square relative flex overflow-hidden`}
+                    >
+                        <img
+                            src={profile2.image}
+                            className="w-full object-cover"
+                            alt="profile pic of user 2"
+                            onClick={() => {window.open(`${profile2.user_url}`, '_blank')}}
+                        />
                     </div>
                 </div>
                 <div className="message_container flex flex-col items-center gap-2">
@@ -192,13 +195,14 @@ const Match = () => {
                                 return (
                                     <div
                                         key={index}
-                                        className="flex flex-col items-center gap-y-1 flex-wrap"
+                                        className="flex flex-col items-center gap-y-1 flex-wrap cursor-pointer"
+                                        onClick={() => {window.open(`${commonArtist["artist_external_url"]}`, '_blank')}}
                                     >
                                         <img
                                             src={
                                                 commonArtist["artist_image_url"]
                                             }
-                                            className="w-14 aspect-square rounded-full"
+                                            className="w-14 aspect-square"
                                             alt=""
                                         />
                                         <p className="text-white text-xs">
@@ -214,16 +218,18 @@ const Match = () => {
                     <div className="stat__pic__container flex justify-between items-center w-full">
                         <img
                             src={profile1.image}
-                            className="w-14 aspect-square rounded-full"
-                            alt=""
+                            className="w-14 aspect-square cursor-pointer"
+                            alt="profile pic of user 1"
+                            onClick={() => {window.open(`${profile1.user_url}`, '_blank')}}
                         />
                         <p className="text-sm font-thin tracking-tight text-gray-300 italic">
                             Let's deep dive
                         </p>
                         <img
                             src={profile2.image}
-                            className="w-14 aspect-square rounded-full"
-                            alt=""
+                            className="w-14 aspect-square cursor-pointer"
+                            alt="profile pic of user 2"
+                            onClick={() => {window.open(`${profile2.user_url}`, '_blank')}}
                         />
                     </div>
                     <div className="flex flex-col gap-4 stats" ref={(el) => (stats = el)}>

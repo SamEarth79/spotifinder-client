@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import AppContainer from "../components/AppContainer/AppContainer";
 import { ReactComponent as SpotifinderTreble } from "../images/spotifinder_treble.svg";
+import { ReactComponent as SpotifyLogo} from "../images/Spotify_logo_with_text.svg"
 
 const Home = () => {
     const location = useLocation();
@@ -13,13 +14,6 @@ const Home = () => {
         : location.state.profileData;
     const navigate = useNavigate();
 
-    const copyToClipboard = (textToCopy) => {
-        try {
-            navigator.clipboard.writeText(textToCopy);
-        } catch (err) {
-            console.error("Unable to copy to clipboard", err);
-        }
-    };
 
     const gsapAnimations = () => {
         let tl = gsap.timeline({});
@@ -130,14 +124,14 @@ const Home = () => {
                 <div className="logo__container hero-text text-green-500 font-Cabin font-semibold tracking-tighter text-4xl w-fit">
                     matchingbeats
                 </div>
-                <div className="userButton relative flex flex-col items-center gap-1" onClick={()=>{navigate("/settings")}}>
+                <div className="userButton relative flex flex-col items-center gap-1 cursor-pointer" onClick={()=>{window.open(`${userData.user_url}`, '_blank')}}>
                     <div
-                        className={`bg-green-500 w-16 aspect-square rounded-full border border-white`}
+                        className={`w-16 aspect-square`}
                     >
                         <img
                             src={`${userData.image}`}
                             alt="user logo"
-                            className="overflow-hidden rounded-full object-contain"
+                            className=""
                         />
                     </div>
                     <div className="absolute -bottom-16 flex items-center gap-1">
@@ -146,13 +140,18 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="name__container flex flex-col w-full">
-                <h1 className="text-3xl font-Cabin capitalize  text-secondary-gray tracking-tight">
-                    Hi,
-                </h1>
-                <h1 className="text-3xl font-Cabin capitalize font-semibold text-white tracking-tight">
-                    {userData.name}
-                </h1>
+            <div className="name__container flex justify-between items-center w-full">
+                <div className="flex flex-col ">
+                    <h1 className="text-3xl font-Cabin capitalize  text-secondary-gray tracking-tight">
+                        Hi,
+                    </h1>
+                    <h1 className="text-3xl font-Cabin capitalize font-semibold text-white tracking-tight">
+                        {userData.name}
+                    </h1>
+                </div>
+                <div className="">
+                    <SpotifyLogo className="w-48 aspect-square cursor-pointer" onClick={() => window.open('https://www.spotify.com/', '_blank')}/>
+                </div>
             </div>
             <div className="share__container flex flex-col items-center pb-20">
                 <div className="qr__container py-10 relative flex flex-col items-center justify-center">
@@ -191,25 +190,6 @@ const Home = () => {
                         </p>
                         <h1 className="bg-inherit border p-2 rounded-md text-center text-xl text-white font-Cabin relative">
                             <span>{userData.uid}</span>
-                            <button
-                                className="absolute right-2 bottom-1/2 translate-y-1/2 active:bg-slate-200 active:rounded-full active:p-1 p-1 transition-all duration-100"
-                                onClick={copyToClipboard(userData.uid)}
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth="1.5"
-                                    stroke="currentColor"
-                                    className="w-5 h-5 text-slate-600"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"
-                                    />
-                                </svg>
-                            </button>
                         </h1>
                     </div>
                     <div className="flex flex-col gap-2">

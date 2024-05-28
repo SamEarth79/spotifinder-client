@@ -9,6 +9,7 @@ import { ReactComponent as SpotifinderTreble } from "../images/spotifinder_trebl
 import {load} from '@cashfreepayments/cashfree-js';
 import Backend from "../components/api/Backend";
 import Loader from "../components/Loader/Loader";
+import { ReactComponent as SpotifyLogo} from "../images/Spotify_logo_with_text.svg"
 
 function CollapsibleSection({ title, children }) {
     const [isCollapsed, setIsCollapsed] = useState(true);
@@ -101,6 +102,11 @@ const Settings = () => {
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData"))?.profileData)
     const [loading, setLoading] = useState(true)
 
+    const logOut = () => {
+        localStorage.clear();
+        window.location = "/";
+    }
+
     
 
     useEffect(()=>{
@@ -110,9 +116,7 @@ const Settings = () => {
                 "uid": userData['uid'],
                 "order_id": order_id,
             }
-            console.log(data);
             const response = await Backend.post(`/get_updated_user_data/`, data);
-            console.log(response);
             if(response.status===200){
                 localStorage.setItem("userData", JSON.stringify(response.data));
             }
@@ -132,15 +136,21 @@ const Settings = () => {
     return (
         <AppContainer className={`items-start px-6 py-2`}>
             <div className="profile py-10 w-full">
-                <div className="image_name flex items-center gap-2 p-2">
-                    <img
-                        src={`${userData?.image}`}
-                        className="aspect-square w-16 rounded-full"
-                        alt=""
-                    />
-                    <h1 className="text-center text-white text-xl font-semibold">
-                        {userData?.name}
-                    </h1>
+                <div className="image_name p-2 flex items-center justify-between">
+                    <div className="flex flex-col items-center gap-2 ">
+                        <img
+                            src={`${userData?.image}`}
+                            className="aspect-square w-16 cursor-pointer"
+                            alt="user profile pic"
+                            onClick={()=>{window.open(`${userData?.user_url}`, '_blank')}}
+                            />
+                        <h1 className=" text-white text-xl font-semibold">
+                            {userData?.name}
+                        </h1>
+                    </div>
+                    <div className="">
+                        <SpotifyLogo className="w-48 aspect-square cursor-pointer" onClick={() => window.open('https://www.spotify.com/', '_blank')}/>
+                    </div>
                 </div>
                 <div className="trebles w-full p-2 flex flex-col justify-center ">
                     <div className="flex items-center justify-center gap-6 w-full">
@@ -163,6 +173,14 @@ const Settings = () => {
                 </div>
             </div>
             <div className="w-full pb-10 overflow-scroll flex flex-col items-start">
+                <div className="bg-inherit border border-white rounded-lg w-full p-4 font-semibold text-green-500 text-xl flex items-center gap-2 hover:cursor-pointer" onClick={logOut}>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M22 10.5h-6m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM4 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 10.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                        </svg>
+                    </span>
+                    Logout
+                </div>
                 <CollapsibleSection title="Privacy Policy">
                     {
                         <div className="max-h-screen overflow-scroll flex flex-col gap-4">

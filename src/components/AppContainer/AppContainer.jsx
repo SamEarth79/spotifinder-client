@@ -1,5 +1,4 @@
 import React from "react";
-import { DESKTOP_TAILWIND } from "../../constants/constants";
 import Footer from "../Footer/Footer";
 
 const AppContainer = ({ children, footer=true, className }) => {

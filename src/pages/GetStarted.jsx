@@ -8,10 +8,10 @@ import "../styles/get-started.css";
 import AppContainer from "../components/AppContainer/AppContainer";
 import { BounceLoader } from "react-spinners";
 import Dialog from "../components/Dialog/Dialog";
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import ContactDialog from "../components/Dialog/ContactDialog/ContactDialog";
 import PrivacyPolicyDialog from "../components/Dialog/PrivacyPolicyDialog/PrivacyPolicyDialog";
 import HowItWorksDialog from "../components/Dialog/HowItWorksDialog/HowItWorksDialog";
+import { ReactComponent as SpotifyLogo} from "../images/Spotify_logo_with_text.svg"
 
 const GetStarted = () => {
     const navigate = useNavigate();
@@ -112,6 +112,9 @@ const GetStarted = () => {
                 ) : (
                     <BounceLoader color="#22c55e" true />
                 )}
+                <div className="footer-links">
+                    <SpotifyLogo className="w-60 aspect-square cursor-pointer" onClick={() => window.open('https://www.spotify.com/', '_blank')}/>
+                </div>
                 <div className="footer-links flex flex-col gap-4 text-lg justify-center items-center text-green-500 absolute bottom-10">
                     <div className="flex flex-wrap justify-center items-center gap-4">
                         <p onClick={() => {
@@ -126,7 +129,7 @@ const GetStarted = () => {
                             Contact
                         </p>
                     </div>
-                    <p>How matchingbeats works</p>
+                    <p onClick={() => setHowItWorks(true)}>How matchingbeats works</p>
                 </div>
             </div>
             <Dialog
@@ -148,7 +151,7 @@ const GetStarted = () => {
             <Dialog
                 isOpen={howItWorks}
                 setIsOpen={setHowItWorks}
-                title={""}
+                title={"How Matching Beats Works"}
                 content={
                     <HowItWorksDialog />
                 }

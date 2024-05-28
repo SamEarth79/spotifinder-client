@@ -4,6 +4,7 @@ import "../styles/scanner.css";
 import Backend from "../components/api/Backend";
 import { useLocation, useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer/AppContainer";
+import { ReactComponent as SpotifyLogo} from "../images/Spotify_logo_with_text.svg"
 
 const Scanner = () => {
     const location = useLocation();
@@ -45,6 +46,9 @@ const Scanner = () => {
     return (
         <AppContainer className={``}>
             <div className="h-screen flex flex-col items-center justify-center gap-10">
+                <div className="">
+                    <SpotifyLogo className="w-60 cursor-pointer" onClick={() => window.open('https://www.spotify.com/', '_blank')}/>
+                </div>
                 <div
                     className="w-full text-white font-Cabin flex flex-col justify-center items-center"
                     id="reader"
